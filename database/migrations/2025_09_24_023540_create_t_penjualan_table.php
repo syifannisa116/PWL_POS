@@ -11,21 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('m_supplier', function (Blueprint $table) {
-            $table->id('supplier_id');
-            $table->string('supplier_kode');
-            $table->string('supplier_nama');
-            $table->string('supplier_alamat')->nullable();
-            $table->string('supplier_phone')->nullable();
+        Schema::create('t_penjualan', function (Blueprint $table) {
+            $table->id('penjualan_id');
+            $table->dateTime('tgl_penjualan');
+
+            // FK ke m_user
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('m_user');
+
             $table->timestamps();
         });
     }
+
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('m_supplier');
+        Schema::dropIfExists('t_penjualan');
     }
 };

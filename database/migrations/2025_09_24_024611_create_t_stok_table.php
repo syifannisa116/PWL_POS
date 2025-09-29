@@ -13,21 +13,18 @@ return new class extends Migration
     {
         Schema::create('t_stok', function (Blueprint $table) {
             $table->id('stok_id');
-            $table->integer('jumlah');
-
-            // relasi ke m_barang
-            $table->unsignedBigInteger('barang_id');
-            $table->foreign('barang_id')->references('barang_id')->on('m_barang');
-
-            // relasi ke m_user
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('m_user');
-
+            $table->unsignedBigInteger('supplier_id')->index(); //indexing untuk foreign key
+            $table->unsignedBigInteger('barang_id')->index(); //indexing untuk foreign key
+            $table->unsignedBigInteger('user_id')->index(); //indexing untuk foreign key
+            $table->date('stok_tanggal');
+            $table->unsignedBigInteger('stok_jumlah');
             $table->timestamps();
+
+            $table->foreign('supplier_id')->references('supplier_id')->on('m_supplier');
+            $table->foreign('barang_id')->references('barang_id')->on('m_barang');
+            $table->foreign('user_id')->references('user_id')->on('m_user');
         });
     }
-
-
 
     /**
      * Reverse the migrations.

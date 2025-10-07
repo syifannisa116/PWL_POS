@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function hapus($id)
+    public function index()
     {
-        $user = UserModel::find($id);
-        $user->delete();
-
-        return redirect('/user');
+        $user = UserModel::with('level')->get();
+        return view('user', ['data' => $user]);
    }
 }

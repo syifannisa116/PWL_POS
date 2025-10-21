@@ -1,4 +1,6 @@
- @section('content') 
+@extends('layouts.template') 
+ 
+@section('content') 
   <div class="card card-outline card-primary"> 
     <div class="card-header"> 
       <h3 class="card-title">{{ $page->title }}</h3> 
@@ -43,7 +45,7 @@ old('nama') }}" required>
         </div> 
         <div class="form-group row"> 
           <label class="col-1 control-label col-form-label">Password</label> 
- <div class="col-11"> 
+             <div class="col-11"> 
             <input type="password" class="form-control" id="password" name="password" 
 required> 
             @error('password') 
@@ -65,4 +67,4 @@ required>
 @push('css') 
 @endpush 
 @push('js') 
-@endpush 
+@endpush
